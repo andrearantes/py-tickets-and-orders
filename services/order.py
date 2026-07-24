@@ -1,9 +1,10 @@
 from db.models import Ticket, User, Order, MovieSession
 from django.db import transaction
+from typing import Optional
 
 
 @transaction.atomic
-def create_order(username, tickets, date=None, **kwargs) -> User:
+def create_order(username: str, tickets: list, date: Optional[str], **kwargs) -> Order:
     user = User.objects.get(username=username)
 
     order = Order(user=user)
