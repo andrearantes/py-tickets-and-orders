@@ -58,7 +58,7 @@ class Order(models.Model):
                              on_delete=models.CASCADE,
                              related_name="orders")
 
-    def __str__(self) ->str:
+    def __str__(self) -> str:
         return f"<Order: {self.created_at}>"
 
     class Meta:
@@ -74,7 +74,7 @@ class Ticket(models.Model):
     row = models.IntegerField()
     seat = models.IntegerField()
 
-    def __str__(self) ->str:
+    def __str__(self) -> str:
         return (f"<Ticket: {self.movie_session.movie.title} "
                 f"{self.movie_session.show_time} "
                 f"(row: {self.row}, "
