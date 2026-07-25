@@ -5,7 +5,7 @@ from typing import Optional
 
 @transaction.atomic
 def create_order(username: str, tickets: list,
-                 date: Optional[str], **kwargs) -> Order:
+                 date: Optional[str]):
     user = User.objects.get(username=username)
 
     order = Order(user=user)
@@ -23,7 +23,7 @@ def create_order(username: str, tickets: list,
     return order
 
 
-def get_orders(username: Optional[str] = None) -> list:
+def get_orders(username: Optional[str] = None) :
     if username:
-        return list(Order.objects.filter(user__username=username))
-    return list(Order.objects.all())
+        return (Order.objects.filter(user__username=username))
+    return (Order.objects.all())
