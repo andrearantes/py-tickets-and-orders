@@ -9,14 +9,14 @@ def create_user(username: str, password: str,
                 email: Optional[str] = None,
                 first_name: Optional[str] = None,
                 last_name: Optional[str] = None) -> User:
-
-    return User.objects.create_user(
-        username=username,
-        password=password,
-        email=email,
-        first_name=first_name,
-        last_name=last_name
-    )
+    user = User(username=username)
+    user.set_password(password)
+    if email:
+        user.email = email
+    user.first_name = first_name if first_name else ""
+    user.last_name = last_name if last_name else ""
+    user.save()
+    return user
 
 
 def get_user(user_id: int) -> User:
