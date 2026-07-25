@@ -6,7 +6,7 @@ from typing import Optional
 
 @transaction.atomic
 def create_order(username: str, tickets: list,
-                 date: Optional[str]) -> Order:
+                 date: Optional[str] = None) -> Order:
     user = User.objects.get(username=username)
 
     order = Order(user=user)
