@@ -9,18 +9,13 @@ def create_user(username: str, password: str,
                 email: Optional[str] = None,
                 first_name: Optional[str] = None,
                 last_name: Optional[str] = None) -> User:
-    user = User(username=username)
-    user.set_password(password)
-    if email:
-        user.email = email
-    user.first_name = first_name if first_name else ""
-    user.last_name = last_name if last_name else ""
-    user.save()
-    return user
+
+    return get_user_model().objects.create_user(username, password, email=email,
+                                    first_name=first_name, last_name=last_name)
 
 
 def get_user(user_id: int) -> User:
-    return User.objects.get(pk=user_id)
+    return get_user_model().objects.get(pk=user_id)
 
 
 def update_user(user_id: int,
@@ -29,7 +24,7 @@ def update_user(user_id: int,
                 email: Optional[str] = None,
                 first_name: Optional[str] = None,
                 last_name: Optional[str] = None) -> User:
-    user = User.objects.get(pk=user_id)
+    user = get_user(user_id)
 
     if username:
         user.username = username

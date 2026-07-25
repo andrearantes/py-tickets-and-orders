@@ -6,7 +6,7 @@ from django.db import transaction
 
 def get_movies(title: Optional[str] = None,
                genres_ids: list[int] = None,
-               actors_ids: list[int] = None) -> QuerySet:
+               actors_ids: list[int] = None) -> QuerySet[Movie]:
     movies = Movie.objects.all()
     if title:
         movies = movies.filter(title__icontains=title)
